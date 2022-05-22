@@ -4,9 +4,20 @@ print("#############################")
 print("Welcome to the Guessing game!")
 print("#############################")
 
-secret_num = random.randrange(1, 101)
-total_attempts = 3
+difficulty = 0
+total_attempts = 0
+while difficulty < 1 or difficulty > 3:
+    print("Choose the difficulty in the game:")
+    difficulty = int(input("(1) Easy (2) Medium (3) Hard "))
 
+if difficulty == 1:
+    total_attempts = 15
+elif difficulty == 2:
+    total_attempts = 10
+else:
+    total_attempts = 5
+
+secret_num = random.randrange(1, 101)
 for attempt in range(1, total_attempts + 1):
     print("\n\nAttempt {} of {}".format(attempt, total_attempts))
 
