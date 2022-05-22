@@ -4,7 +4,7 @@ import unicodedata
 
 def to_play():
     display_game_name()
-    secret_word = get_secret_word()
+    secret_word = get_secret_word("palavras.txt")
     letters_unraveled = ["_" for each_letter in secret_word]
     got_the_word_right = False
     went_to_the_gallows = False
@@ -33,9 +33,9 @@ def display_game_name():
     print("#############################")
 
 
-def get_secret_word():
+def get_secret_word(file_name):
     words = []
-    with open("palavras.txt", encoding="UTF-8") as file:
+    with open(file_name, encoding="UTF-8") as file:
         for line in file:
             words.append(line.strip())
     chosen_word = random.randrange(0, len(words))
