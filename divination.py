@@ -7,6 +7,7 @@ print("#############################")
 win = False
 difficulty = 0
 total_attempts = 0
+spots = 1000
 while difficulty < 1 or difficulty > 3:
     print("\nChoose the difficulty in the game:")
     difficulty = int(input("(1) Easy (2) Medium (3) Hard "))
@@ -32,13 +33,14 @@ for attempt in range(1, total_attempts + 1):
     kick_was_smaller = shot < secret_num
 
     if kick_was_bigger:
-        print("You missed! Your kick was bigger than the secret number")
+        print("You got the number wrong! Your kick was bigger than the secret number")
     elif kick_was_smaller:
-        print("You missed! Your guess was less than the secret number")
+        print("You got the number wrong! Your guess was less than the secret number")
     else:
-        print("You're right!")
+        print("You got the number right! Your score was {}".format(spots))
         win = True
         break
+    spots -= abs(secret_num - shot)
 
 if not win:
     print("\nThe secret number was {}".format(secret_num), end="\n\n")
