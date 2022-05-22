@@ -1,18 +1,18 @@
 import random
+import unicodedata
+
 
 def to_play():
     display_game_name()
-
     secret_word = get_secret_word()
     letters_unraveled = ["_" for each_letter in secret_word]
     got_the_word_right = False
     went_to_the_gallows = False
     errors = 0
-
     while not got_the_word_right and not went_to_the_gallows:
         print("\n\n", letters_unraveled, sep="")
         letter_kicked = input("Enter a letter: ").strip().upper()
-        if letter_kicked in secret_word:
+        if got_the_lyrics_right(secret_word, letter_kicked):
             set_found_letter(secret_word, letter_kicked, letters_unraveled)
         else:
             errors += 1
@@ -24,9 +24,7 @@ def to_play():
     if went_to_the_gallows:
         report_that_the_player_lost(secret_word)
     elif got_the_word_right:
-        inform_that_the_player_won()
-
-    print("\n", "End of the game!", sep="")
+        inform_that_the_player_won(secret_word)
 
 
 def display_game_name():
@@ -46,10 +44,20 @@ def get_secret_word():
 
 def set_found_letter(word, letter, unraveled):
     idx = 0
-    for current_letter in word:
+    word_unaccented = unaccented(word)
+    for current_letter in word_unaccented:
         if current_letter.lower() == letter.lower():
-            unraveled[idx] = letter
+            unraveled[idx] = word[idx]
         idx += 1
+
+
+def unaccented(word):
+    return ''.join(c for c in unicodedata.normalize("NFD", word) if unicodedata.category(c) != "Mn")
+
+
+def got_the_lyrics_right(secret_word, letter):
+    secret_word_unaccented = unaccented(secret_word)
+    return letter in secret_word_unaccented
 
 
 def report_that_the_player_lost(secret_word):
@@ -73,8 +81,9 @@ def report_that_the_player_lost(secret_word):
     print("       \_______/           ")
 
 
-def inform_that_the_player_won():
+def inform_that_the_player_won(secret_word):
     print("Congratulation, you won!")
+    print("the word was {}".format(secret_word))
     print("       ___________      ")
     print("      '._==_==_=_.'     ")
     print("      .-\\:      /-.    ")
