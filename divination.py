@@ -4,10 +4,11 @@ print("#############################")
 print("Welcome to the Guessing game!")
 print("#############################")
 
+win = False
 difficulty = 0
 total_attempts = 0
 while difficulty < 1 or difficulty > 3:
-    print("Choose the difficulty in the game:")
+    print("\nChoose the difficulty in the game:")
     difficulty = int(input("(1) Easy (2) Medium (3) Hard "))
 
 if difficulty == 1:
@@ -36,6 +37,9 @@ for attempt in range(1, total_attempts + 1):
         print("You missed! Your guess was less than the secret number")
     else:
         print("You're right!")
+        win = True
         break
 
+if not win:
+    print("\nThe secret number was {}".format(secret_num), end="\n\n")
 print("End of the game!")
