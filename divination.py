@@ -6,7 +6,7 @@ secret_num = 42
 total_attempts = 3
 
 for attempt in range(1, total_attempts + 1):
-    print(f"\n\nAttempt {attempt} of {total_attempts}")
+    print("\n\nAttempt {} of {}".format(attempt, total_attempts))
 
     shot = int(input("Enter an integer between 1 and 100: "))
 
