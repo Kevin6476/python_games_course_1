@@ -6,7 +6,7 @@ def to_play():
     got_the_word_right = False
     went_to_the_gallows = False
     secret_word = "banana".upper()
-    letters_unraveled = ["_", "_", "_", "_", "_", "_"]
+    letters_unraveled = ["_" for each_letter in secret_word]
     total_errors = 3
     errors = 0
 
