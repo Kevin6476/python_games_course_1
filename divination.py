@@ -8,8 +8,11 @@ total_attempts = 3
 for attempt in range(1, total_attempts + 1):
     print(f"\n\nAttempt {attempt} of {total_attempts}")
 
-    shot = int(input("Enter your number: "))
-    print("Your kick was", shot)
+    shot = int(input("Enter an integer between 1 and 100: "))
+
+    if shot < 1 or shot > 100:
+        print("You must enter a number between 1 and 100! This round was lost.")
+        continue
 
     kick_was_bigger = shot > secret_num
     kick_was_smaller = shot < secret_num
