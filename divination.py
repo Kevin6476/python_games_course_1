@@ -40,8 +40,8 @@ for attempt in range(1, total_attempts + 1):
         print("You got the number right! Your score was {}".format(spots))
         win = True
         break
-    spots -= abs(secret_num - shot)
+    spots -= round(abs(secret_num - shot) / 3)
 
 if not win:
-    print("\nThe secret number was {}".format(secret_num), end="\n\n")
+    print("\nThe secret number was {} you scored {} points".format(secret_num, spots), end="\n\n")
 print("End of the game!")
