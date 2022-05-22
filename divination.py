@@ -47,3 +47,7 @@ def to_play():
     if not win:
         print("\nThe secret number was {} you scored {} points".format(secret_num, spots), end="\n\n")
     print("End of the game!")
+
+
+if __name__ == "__main__":
+    to_play()
